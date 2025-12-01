@@ -1,0 +1,359 @@
+/* Базовые стили */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: #fdf7ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background:
+        radial-gradient(circle at 0% 0%, #ffb2f0 0, transparent 55%),
+        radial-gradient(circle at 100% 100%, #ffdf9a 0, transparent 55%),
+        radial-gradient(circle at 100% 0%, #8b3dff 0, #1c0430 55%);
+    background-color: #12001f;
+    overflow: hidden;
+}
+
+/* Мерцающий слой на фоне */
+body::before {
+    content: "";
+    position: fixed;
+    inset: -40%;
+    background-image:
+        radial-gradient(circle, rgba(255,255,255,0.28) 1px, transparent 0),
+        radial-gradient(circle, rgba(255,255,255,0.18) 1px, transparent 0);
+    background-size: 160px 160px, 220px 220px;
+    mix-blend-mode: screen;
+    opacity: 0.45;
+    animation: sparkleMove 24s linear infinite;
+    pointer-events: none;
+}
+
+/* Орбита вокруг карточки */
+.glow-orbit {
+    position: fixed;
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 224, 142, 0.35), transparent 65%);
+    filter: blur(8px);
+    opacity: 0.9;
+    z-index: 0;
+    animation: orbit 26s linear infinite;
+}
+
+/* Обёртка */
+.wrapper {
+    position: relative;
+    max-width: 480px;
+    width: 100%;
+    z-index: 1;
+}
+
+/* Карточка */
+.card {
+    position: relative;
+    border-radius: 30px;
+    padding: 2.6rem 2.2rem 2.4rem;
+    background:
+        radial-gradient(circle at 0% 0%, rgba(255,255,255,0.18), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(255,255,255,0.15), transparent 55%),
+        linear-gradient(145deg, #ffdfb5 0%, #ffb6e3 40%, #e18bff 70%, #7b3fff 100%);
+    box-shadow:
+        0 0 45px rgba(255, 215, 141, 0.65),
+        0 28px 65px rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255,255,255,0.3);
+    overflow: hidden;
+}
+
+/* Дополнительная текстура внутри карточки */
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(135deg, rgba(255,255,255,0.14) 0, transparent 40%, rgba(255,255,255,0.12) 60%, transparent 100%),
+        radial-gradient(circle, rgba(255,255,255,0.35) 1px, transparent 0);
+    background-size: 260% 260%, 120px 120px;
+    mix-blend-mode: screen;
+    opacity: 0.45;
+    pointer-events: none;
+    animation: cardShimmer 18s ease-in-out infinite alternate;
+}
+
+/* Заголовок карточки: фото + переключатель языка */
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.6rem;
+}
+
+/* Фото – ниже и ближе к тексту */
+.avatar-ring {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    padding: 3px;
+    background: radial-gradient(circle at 30% 0%, #fff8e3, #ffc46f 40%, #ff57da 75%, #3b00a8 100%);
+    box-shadow:
+        0 0 25px rgba(255, 219, 150, 0.8),
+        0 0 55px rgba(255, 117, 248, 0.7);
+}
+
+.avatar-ring img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Кнопка переключения языка */
+.lang-toggle {
+    border: none;
+    border-radius: 999px;
+    padding: 0.55rem 1.2rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #2b0033;
+    background: radial-gradient(circle at 0 0, #fff6d7, #ffcf6f);
+    box-shadow:
+        0 0 16px rgba(255,223,151,0.9),
+        0 8px 22px rgba(0,0,0,0.35);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.lang-toggle::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, rgba(255,255,255,0.55), transparent 60%);
+    transform: translateX(-110%);
+    transition: transform 0.45s ease;
+}
+
+.lang-toggle:hover::after {
+    transform: translateX(110%);
+}
+
+.brand-name {
+    font-family: "Playfair Display", "Times New Roman", serif;
+    font-size: clamp(1.9rem, 2.2vw + 1.4rem, 2.4rem);
+    text-align: center;
+    margin-bottom: 0.4rem;
+    color: #fff6d7;
+    text-shadow:
+        0 0 18px rgba(255, 231, 175, 0.9),
+        0 0 35px rgba(209, 116, 255, 0.85);
+}
+
+.languages-line {
+    text-align: center;
+    font-size: 0.95rem;
+    opacity: 0.93;
+    margin-bottom: 1.4rem;
+}
+
+/* Текст */
+.description {
+    font-size: 0.94rem;
+    line-height: 1.7;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(0,0,0,0.45);
+    margin-bottom: 1.6rem;
+}
+
+/* Блок локации и телефона */
+.location-block {
+    font-size: 0.92rem;
+    margin-bottom: 2rem;
+}
+
+.location-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.45rem;
+    margin-bottom: 0.2rem;
+}
+
+.icon {
+    font-size: 1rem;
+}
+
+.phone-link {
+    color: #fff7de;
+    text-decoration: none;
+}
+
+.phone-link:hover {
+    text-decoration: underline;
+}
+
+/* Кнопки */
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-radius: 999px;
+    padding: 0.95rem 1.4rem;
+    border: none;
+    font-size: 0.98rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.3s ease;
+}
+
+.btn.primary {
+    background:
+        radial-gradient(circle at 0 0, #fff9dd, #ffd76e 40%, #ff8ad6 80%);
+    color: #2b0033;
+    box-shadow:
+        0 0 28px rgba(255, 228, 170, 0.85),
+        0 14px 32px rgba(0, 0, 0, 0.5);
+}
+
+.btn.secondary {
+    background: radial-gradient(circle at 0 0, rgba(255,255,255,0.15), rgba(86,0,143,0.95));
+    color: #fef7ff;
+    border: 1px solid rgba(255,255,255,0.4);
+    box-shadow:
+        0 0 22px rgba(129, 51, 255, 0.75),
+        0 14px 32px rgba(0,0,0,0.55);
+}
+
+.btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, rgba(255,255,255,0.6), transparent 60%);
+    transform: translateX(-120%);
+    transition: transform 0.45s ease;
+}
+
+.btn:hover::before {
+    transform: translateX(120%);
+}
+
+.btn:hover {
+    transform: translateY(-2px) scale(1.01);
+}
+
+.hint {
+    margin-top: 1.3rem;
+    font-size: 0.78rem;
+    text-align: center;
+    opacity: 0.85;
+}
+
+/* Логотип VS в углу */
+.brand-logo {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    padding: 4px;
+    background: radial-gradient(circle at 0 0, #ffeebb, #ff7fea 60%, #3a00a0 100%);
+    box-shadow:
+        0 0 20px rgba(255, 214, 168, 0.9),
+        0 10px 26px rgba(0,0,0,0.65);
+    z-index: 3;
+}
+
+.brand-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Анимации */
+@keyframes sparkleMove {
+    from { transform: translate3d(-40px, -40px, 0); }
+    to   { transform: translate3d(40px, 40px, 0); }
+}
+
+@keyframes cardShimmer {
+    0% {
+        background-position: 0% 0%, 0 0;
+    }
+    100% {
+        background-position: 100% 100%, 60px 60px;
+    }
+}
+
+@keyframes orbit {
+    0%   { transform: translate(-30%, -12%); }
+    50%  { transform: translate(5%, 10%); }
+    100% { transform: translate(-30%, -12%); }
+}
+
+/* Адаптация для телефона */
+@media (max-width: 600px) {
+    body {
+        padding: 0.9rem;
+    }
+
+    .wrapper {
+        max-width: 100%;
+    }
+
+    .card {
+        padding: 2rem 1.4rem 2.1rem;
+        border-radius: 24px;
+    }
+
+    .avatar-ring {
+        width: 82px;
+        height: 82px;
+    }
+
+    .brand-logo {
+        width: 44px;
+        height: 44px;
+        top: 0.7rem;
+        right: 0.7rem;
+    }
+
+    .description {
+        font-size: 0.9rem;
+    }
+
+    .buttons .btn {
+        font-size: 0.9rem;
+        padding: 0.9rem 1.1rem;
+    }
+
+    .glow-orbit {
+        width: 420px;
+        height: 420px;
+    }
+}

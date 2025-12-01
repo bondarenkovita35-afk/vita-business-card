@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vita Lashes • Digitalt visitkort</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Логотип VS – ссылка на твой сайт -->
+    <a class="brand-logo" href="https://bondarenkovita35-afk.github.io/vs-litecode-studio/" target="_blank"
+        aria-label="VS LiteCode Studio">
+        <img src="images/logo.png" alt="VS LiteCode Studio logo">
+    </a>
+
+    <div class="glow-orbit"></div>
+
+    <main class="wrapper">
+        <section class="card">
+            <div class="card-header">
+                <div class="avatar-ring">
+                    <img src="images/avatar.png" alt="Vita Sivakova, fransstylist">
+                </div>
+
+                <!-- ОДНА кнопка-переключатель языков -->
+                <button id="langToggle" class="lang-toggle" type="button">
+                    <span id="langCode">RU</span>
+                </button>
+            </div>
+
+            <h1 class="brand-name">Vita Lashes</h1>
+            <p id="languagesLine" class="languages-line">
+                Русский · Шведский · Английский
+            </p>
+
+            <p id="description" class="description">
+                Наращивание ресниц — классика, 2D–6D, лисий/кукольный эффект.<br>
+                Аккуратная работа, комфортная процедура, премиум-материалы.<br>
+                Коррекция, снятие, ламинирование ресниц.
+            </p>
+
+            <div class="location-block">
+                <div class="location-row">
+                    <span class="icon">📍</span>
+                    <span id="locationText">Стокгольм / Уппландс-Бро</span>
+                </div>
+                <div class="location-row">
+                    <span class="icon">📞</span>
+                    <a class="phone-link" href="tel:+6729431427">+6729431427</a>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <!-- Кнопка на Instagram -->
+                <a id="instagramBtn" class="btn primary" href="https://instagram.com/vita_permanent_stockholm"
+                    target="_blank">
+                    Instagram • Записаться
+                </a>
+
+                <!-- Кнопка WhatsApp с номером -->
+                <a id="whatsappBtn" class="btn secondary" href="https://wa.me/6729431427" target="_blank">
+                    WhatsApp • Написать
+                </a>
+            </div>
+
+            <p class="hint">
+                Нажми на кнопку RU/SV/EN, чтобы поменять язык.
+            </p>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
